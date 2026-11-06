@@ -17,7 +17,7 @@
   ],
   [
    "Step 3: Connect Google Ads, Meta and GA4",
-   "<p>Attach your tags to that trigger. This account adds <code>form_position</code> and <code>form_id</code> to the Google Ads tag, so a page with two forms can be told apart.</p>[[img:swipe-gads-tag|The landing page conversion.]]<p>Send form details to GA4, and map <code>ec_email</code> and <code>ec_phone</code> in a User-Provided Data variable for Enhanced Conversions.</p>"
+   "<p>Attach your tags to that trigger. This account adds <code>form_position</code> and <code>form_id</code> to the Google Ads tag, so a page with two forms can be told apart.</p>[[img:swipe-gads-tag|The landing page conversion.]]<p>Send form details to GA4, and map <code>ec_email</code> and <code>ec_phone</code> in a User-Provided Data variable for Enhanced Conversions.</p><p><strong>Want these in reports?</strong> GA4 won't show them until you register each one as a custom dimension. <a href=\"https://iyrexmedia.com/gravity-forms-gtm-tracking/#ga4-dimensions\">Here's how</a>.</p>"
   ],
   [
    "Step 4: Test, then publish",
