@@ -1,7 +1,7 @@
 {
  "title": "How to Track SwipePages Forms in GTM, From a Live Landing Page",
  "intro": "<p>This client's main site runs on one platform, and the paid traffic lands on a SwipePages page on its own subdomain. So there are two sources of leads, and they need to be reported separately.</p><p>Earlier this week, I submitted a clearly labelled test lead on that landing page with GTM Preview open. The event fired once, and the contact details came through ready for Enhanced Conversions.</p><p>Here's how that setup works, from the real container with the names removed.</p>",
- "tldr": "<p>Add one free Custom HTML tag and trigger on <code>swipe_form_success</code>, which fires when SwipePages adds its own success class to the form. Add a hostname condition if the page is on a subdomain, so its leads get their own conversion action.</p>",
+ "tldr": "<p>This free script counts a lead when SwipePages confirms the form went through. If your landing page is on its own subdomain, you can report its leads separately from your main site, so you can see which one is producing.</p>",
  "sections": [
   [
    "Why SwipePages needs its own signal",
