@@ -1,6 +1,6 @@
 {
  "title": "How to Track SwipePages Forms in GTM, From a Live Landing Page",
- "intro": "<p>This client's main site runs on one platform, and the paid traffic lands on a SwipePages page on its own subdomain. So there are two sources of leads, and they need to be reported separately.</p><p>Earlier this week, I submitted a clearly labelled test lead on that landing page with GTM Preview open. The event fired once, and the contact details came through ready for Enhanced Conversions.</p><p>Here's how that setup works, from the real container with the names removed.</p>",
+ "intro": "<p>This client's main site runs on one platform, and the paid traffic lands on a SwipePages page on its own subdomain. So there are two sources of leads, and they need to be reported separately.</p><p>Earlier this week, I submitted a clearly labelled test lead on that landing page with GTM Preview (GTM's test mode) open. The event fired once, and the contact details came through ready for Enhanced Conversions (a Google Ads feature that uses a lead's contact details to match them to ad clicks).</p><p>Here's how that setup works, from the real container with the names removed.</p>",
  "tldr": "<p>This free script counts a lead when SwipePages confirms the form went through. If your landing page is on its own subdomain, you can report its leads separately from your main site, so you can see which one is producing.</p>",
  "sections": [
   [
@@ -9,15 +9,15 @@
   ],
   [
    "Step 1: Add the listener tag",
-   "<ol><li><a class=\"uft-download\" href=\"https://iyrexmedia.com/wp-content/uploads/gtm-form-listeners/swipepages-form-tracker-v3.3.0.gtm.txt\" download>Download the GTM tag</a>, or get it from <a href=\"https://github.com/Iyke76/swipepages-gtm-form-tracker\" target=\"_blank\" rel=\"noopener\">GitHub</a>.</li><li>Paste it into a new <strong>Custom HTML</strong> tag, triggered on <strong>All Pages</strong>.</li><li>Check that your GTM container is actually on the landing page, since it's a separate build from your main site.</li></ol><p>The tag setup is the same as the <a href=\"https://iyrexmedia.com/gravity-forms-gtm-tracking/\">Gravity Forms walkthrough</a>. If your main site uses a different form tool, use the <a href=\"https://iyrexmedia.com/universal-gtm-form-tracking-listener/\">universal listener walkthrough</a> instead, as this account does.</p>"
+   "<ol><li><a class=\"uft-download\" href=\"https://iyrexmedia.com/wp-content/uploads/gtm-form-listeners/swipepages-form-tracker-v3.3.0.gtm.txt\" download>Download the GTM tag</a>, or get it from <a href=\"https://github.com/Iyke76/swipepages-gtm-form-tracker\" target=\"_blank\" rel=\"noopener\">GitHub</a>.</li><li>Paste it into a new <strong>Custom HTML</strong> (the GTM option for pasting in a script) tag, triggered on <strong>All Pages</strong>.</li><li>Check that your GTM container is actually on the landing page, since it's a separate build from your main site.</li></ol><p>The tag setup is the same as the <a href=\"https://iyrexmedia.com/gravity-forms-gtm-tracking/\">Gravity Forms walkthrough</a>. If your main site uses a different form tool, use the <a href=\"https://iyrexmedia.com/universal-gtm-form-tracking-listener/\">universal listener walkthrough</a> instead, as this account does.</p>"
   ],
   [
    "Step 2: Split the trigger by hostname",
-   "<p>Create a <strong>Custom Event</strong> trigger on <code>swipe_form_success</code>. If the landing page lives on its own subdomain, set <strong>Some Custom Events</strong> and add a Page Hostname condition.</p>[[img:swipe-trigger|Landing page leads only, feeding Google Ads and Meta.]]<p>With one trigger per hostname, each lead source gets its own conversion action, and you can see which one is producing.</p>"
+   "<p>Create a <strong>Custom Event</strong> trigger on <code>swipe_form_success</code>. If the landing page lives on its own subdomain, set <strong>Some Custom Events</strong> and add a Page Hostname condition.</p>[[img:swipe-trigger|Landing page leads only, feeding Google Ads and Meta.]]<p>With one trigger (the rule that tells a tag when to run) per hostname, each lead source gets its own conversion action, and you can see which one is producing.</p>"
   ],
   [
    "Step 3: Connect Google Ads, Meta and GA4",
-   "<p>Attach your tags to that trigger. This account adds <code>form_position</code> and <code>form_id</code> to the Google Ads tag, so a page with two forms can be told apart.</p>[[img:swipe-gads-tag|The landing page conversion.]]<p>Send form details to GA4, and map <code>ec_email</code> and <code>ec_phone</code> in a User-Provided Data variable for Enhanced Conversions.</p><p><strong>Want these in reports?</strong> GA4 won't show them until you register each one as a custom dimension. <a href=\"https://iyrexmedia.com/gravity-forms-gtm-tracking/#ga4-dimensions\">Here's how</a>.</p>"
+   "<p>Attach your tags to that trigger. This account adds <code>form_position</code> and <code>form_id</code> to the Google Ads tag, so a page with two forms can be told apart.</p>[[img:swipe-gads-tag|The landing page conversion.]]<p>Send form details to GA4 (Google Analytics 4, Google's website reporting tool), and map <code>ec_email</code> and <code>ec_phone</code> in a User-Provided Data variable for Enhanced Conversions.</p><p><strong>Want these in reports?</strong> GA4 won't show them until you register each one as a custom dimension. <a href=\"https://iyrexmedia.com/gravity-forms-gtm-tracking/#ga4-dimensions\">Here's how</a>.</p>"
   ],
   [
    "Step 4: Test, then publish",
@@ -40,5 +40,6 @@
   "kw": "SwipePages GTM form tracking",
   "slug": "swipepages-gtm-tracking",
   "card": "A landing page on its own subdomain, with its own conversion action. Here's the setup, tested with a labelled lead on a live page."
- }
+ },
+ "business": "<p>If you send ad traffic to a SwipePages landing page, you need to know how many leads that page produces. This setup counts leads once SwipePages confirms them, and can keep them separate from your main website. Then you can see which one is earning your ad spend.</p><p>The steps below are for whoever installs it, so you can hand this page to your developer or marketer.</p>"
 }
