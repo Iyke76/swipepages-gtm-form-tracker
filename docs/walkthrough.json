@@ -26,6 +26,10 @@
   [
    "What to know",
    "<ul><li>The labelled test lead ran on an earlier build, on a live landing page, with contact data coming through.</li><li>For v3.3.0, I loaded the build on that same page, filled in the real form and triggered the success class without sending a lead. It returned a normalised email and phone, first and last name, and the ZIP.</li><li>Leaving a required field empty on that page only triggered the browser's own validation. No failure event fired, and no success either. Don't rely on <code>swipe_form_failed</code> to count those.</li><li>A redirect to a different domain can't use the stored data.</li></ul>"
+  ],
+  [
+   "Frequently asked questions",
+   "<h3>Can I track SwipePages conversions without a thank-you page?</h3><p>Yes. The listener fires when SwipePages adds its success class to the form, so no redirect is needed.</p><h3>How do I keep landing page leads separate in Google Ads?</h3><p>Add a Page Hostname condition to the trigger, then give each hostname its own conversion action.</p>"
   ]
  ],
  "closing": "<p>If you'd rather have this installed and checked for you, I can help.</p>",
