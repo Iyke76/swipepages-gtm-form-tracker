@@ -1,0 +1,40 @@
+{
+ "title": "How to Track SwipePages Forms in GTM, From a Live Landing Page",
+ "intro": "<p>This client's main site runs on one platform, and the paid traffic lands on a SwipePages page on its own subdomain. So there are two sources of leads, and they need to be reported separately.</p><p>Earlier this week, I submitted a clearly labelled test lead on that landing page with GTM Preview open. The event fired once, and the contact details came through ready for Enhanced Conversions.</p><p>Here's how that setup works, from the real container with the names removed.</p>",
+ "tldr": "<p>Add one free Custom HTML tag and trigger on <code>swipe_form_success</code>, which fires when SwipePages adds its own success class to the form. Add a hostname condition if the page is on a subdomain, so its leads get their own conversion action.</p>",
+ "sections": [
+  [
+   "Why SwipePages needs its own signal",
+   "<p>SwipePages marks a successful submission with a class on the form, so that's what the listener watches:</p><div class=\"bc-table\"><table><thead><tr><th>What happens</th><th>Signal</th><th>Result</th></tr></thead><tbody><tr><td>SwipePages accepts the lead</td><td><code>amp-form-submit-success</code> class</td><td><code>swipe_form_success</code>, method <code>confirmation_class</code></td></tr><tr><td>Redirect to a same-domain thank-you page</td><td>Matched to recent stored form data</td><td><code>swipe_form_success</code></td></tr><tr><td>Submission error</td><td><code>amp-form-submit-error</code> class</td><td><code>swipe_form_failed</code></td></tr><tr><td>Tatsu form or terms warning shows</td><td>Visible warning after interaction</td><td><code>swipe_form_failed</code></td></tr></tbody></table></div><p><a href=\"https://docs.swipepages.com/en/articles/6948855-how-to-track-form-submissions-using-google-tag-manager\" target=\"_blank\" rel=\"noopener\">SwipePages' own guide</a> uses GTM's Form Submission trigger with a CSS class you add to each form. It avoids a thank-you page and is quick to set up, but it doesn't cover failed submissions or contact data. If you only need a count, try that first. I needed contact data for Enhanced Conversions, and no per-form setup.</p>"
+  ],
+  [
+   "Step 1: Add the listener tag",
+   "<ol><li><a class=\"uft-download\" href=\"https://iyrexmedia.com/wp-content/uploads/gtm-form-listeners/swipepages-form-tracker-v3.3.0.gtm.txt\" download>Download the GTM tag</a>, or get it from <a href=\"https://github.com/Iyke76/swipepages-gtm-form-tracker\" target=\"_blank\" rel=\"noopener\">GitHub</a>.</li><li>Paste it into a new <strong>Custom HTML</strong> tag, triggered on <strong>All Pages</strong>.</li><li>Check that your GTM container is actually on the landing page, since it's a separate build from your main site.</li></ol><p>The tag setup is the same as the <a href=\"https://iyrexmedia.com/gravity-forms-gtm-tracking/\">Gravity Forms walkthrough</a>. If your main site uses a different form tool, use the <a href=\"https://iyrexmedia.com/universal-gtm-form-tracking-listener/\">universal listener walkthrough</a> instead, as this account does.</p>"
+  ],
+  [
+   "Step 2: Split the trigger by hostname",
+   "<p>Create a <strong>Custom Event</strong> trigger on <code>swipe_form_success</code>. If the landing page lives on its own subdomain, set <strong>Some Custom Events</strong> and add a Page Hostname condition.</p>[[img:swipe-trigger|Landing page leads only, feeding Google Ads and Meta.]]<p>With one trigger per hostname, each lead source gets its own conversion action, and you can see which one is producing.</p>"
+  ],
+  [
+   "Step 3: Connect Google Ads, Meta and GA4",
+   "<p>Attach your tags to that trigger. This account adds <code>form_position</code> and <code>form_id</code> to the Google Ads tag, so a page with two forms can be told apart.</p>[[img:swipe-gads-tag|The landing page conversion.]]<p>Send form details to GA4, and map <code>ec_email</code> and <code>ec_phone</code> in a User-Provided Data variable for Enhanced Conversions.</p>"
+  ],
+  [
+   "Step 4: Test, then publish",
+   "<ol><li>In <strong>Preview</strong>, load the landing page and expect <code>ec_tracker_initialized</code>.</li><li>Submit a labelled test lead. Expect one <code>swipe_form_success</code>, with <code>ec_detection_method</code> of <code>confirmation_class</code>.</li><li>Open the event and check the <code>ec_*</code> values, including that the phone variable reads <code>ec_phone</code>.</li><li>Confirm the main site's conversion didn't fire too.</li></ol><p>Then remove old click or thank-you conversions for this page.</p>"
+  ],
+  [
+   "What to know",
+   "<ul><li>The labelled test lead ran on an earlier build, on a live landing page, with contact data coming through.</li><li>For v3.3.0, I loaded the build on that same page, filled in the real form and triggered the success class without sending a lead. It returned a normalised email and phone, first and last name, and the ZIP.</li><li>Leaving a required field empty on that page only triggered the browser's own validation. No failure event fired, and no success either. Don't rely on <code>swipe_form_failed</code> to count those.</li><li>A redirect to a different domain can't use the stored data.</li></ul>"
+  ]
+ ],
+ "closing": "<p>If you'd rather have this installed and checked for you, I can help.</p>",
+ "related": "<p><strong>Related:</strong> <a href=\"https://iyrexmedia.com/gtm-form-listeners/swipepages-forms/\">SwipePages listener</a> · <a href=\"https://iyrexmedia.com/gravity-forms-gtm-tracking/\">Gravity Forms walkthrough</a> · <a href=\"https://iyrexmedia.com/universal-gtm-form-tracking-listener/\">Universal form tracking walkthrough</a></p>",
+ "seo": {
+  "title": "SwipePages GTM Form Tracking With Enhanced Conversions | IyrexMedia",
+  "desc": "Track SwipePages forms in GTM from the form's own success class, with contact data for Enhanced Conversions and separate conversions per hostname. Free listener.",
+  "kw": "SwipePages GTM form tracking",
+  "slug": "swipepages-gtm-tracking",
+  "card": "A landing page on its own subdomain, with its own conversion action. Here's the setup, tested with a labelled lead on a live page."
+ }
+}
